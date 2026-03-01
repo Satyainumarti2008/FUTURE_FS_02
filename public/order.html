@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f1ec;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .box {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      width: 400px;
+      margin: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .order-btn {
+      background: #cd4210;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .order-btn:hover {
+      background: #a6360c;
+    }
+
+    #orderStatus {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Confirm Your Order</h2>
+  <button class="order-btn" onclick="placeOrder()">Place Order</button>
+  <div id="orderStatus"></div>
+</div>
+
+<script>
+async function placeOrder() {
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let statusBox = document.getElementById("orderStatus");
+
+  if (cart.length === 0) {
+    statusBox.innerHTML = "⚠ Please add items first!";
+    return;
+  }
+
+  // Group items properly
+  let grouped = {};
+
+  cart.forEach(item => {
+    if (!grouped[item.name]) {
+      grouped[item.name] = {
+        name: item.name,
+        price: Number(item.price),
+        quantity: 1
+      };
+    } else {
+      grouped[item.name].quantity++;
+    }
+  });
+
+  let items = Object.values(grouped);
+
+  try {
+    statusBox.innerHTML = "⏳ Placing your order...";
+
+    const response = await fetch("/api/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ items })
+    });
+
+    if (!response.ok) throw new Error("Order failed");
+
+    const data = await response.json();
+
+    statusBox.innerHTML = "✅ Order Confirmed! Order ID: " + data.orderId;
+
+    localStorage.removeItem("cart");
+
+    setTimeout(() => {
+      window.location.href = "/home";
+    }, 2000);
+
+  } catch (error) {
+    console.error(error);
+    statusBox.innerHTML = "❌ Server error!";
+  }
+}
+</script>
+
+</body>
+</html>
