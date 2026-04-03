@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const orderSchema = new mongoose.Schema({
   email: {         
     type: String,
@@ -21,5 +20,4 @@ const orderSchema = new mongoose.Schema({
     default: "Pending"
   }
 }, { timestamps: true });
-
 module.exports = mongoose.model("Order", orderSchema);
