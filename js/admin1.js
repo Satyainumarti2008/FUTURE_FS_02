@@ -1,7 +1,5 @@
 async function loadDashboard(){
-
   try{
-
     const res = await fetch("/api/orders");
     const orders = await res.json();
 
@@ -23,7 +21,6 @@ async function loadDashboard(){
     // ✅ Total Users (unique emails)
     let users = [...new Set(orders.map(o => o.email))];
     document.getElementById("totalUsers").innerText = users.length;
-
     // ✅ Recent Orders Table
     let table = document.getElementById("ordersTable");
 
@@ -36,7 +33,6 @@ async function loadDashboard(){
         </tr>
       `;
     });
-
   }
   catch(err){
     console.log(err);
