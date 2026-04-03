@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 const userSchema = new Schema({
     fullName: {
         type: String,
@@ -24,5 +23,4 @@ const userSchema = new Schema({
     otpExpiry:Date
 }, { timestamps: true });
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;
