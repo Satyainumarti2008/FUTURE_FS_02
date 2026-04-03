@@ -1,5 +1,3 @@
-
-
 function loadDashboard(){
 
 let orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -46,9 +44,7 @@ document.getElementById("totalOrders").innerText = orders.length;
 document.getElementById("totalRevenue").innerText = "₹"+revenue;
 document.getElementById("totalUsers").innerText = users.length;
 document.getElementById("pendingOrders").innerText = pending;
-
 }
-
 window.onload = loadDashboard;
 
 
