@@ -53,6 +53,14 @@ app.get('/snacks', (req, res) => {
   res.sendFile('./public/snacks.html', { root: __dirname });
 });
 
+app.get('/drinks', (req, res) => {
+  res.sendFile('./public/drinks.html', { root: __dirname });
+});
+
+app.get('/salads', (req, res) => {
+  res.sendFile('./public/salads.html', { root: __dirname });
+});
+
 app.get('/cart', (req, res) => {
   res.sendFile('./public/cart.html', { root: __dirname });
 });

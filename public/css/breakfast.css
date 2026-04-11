@@ -10,7 +10,6 @@ body {
   padding-bottom: 50px;
 }
 
-/* HEADER */
 .header {
   width: 100%;
   height: 60px;
@@ -45,7 +44,6 @@ body {
   right: -12px;
 }
 
-/* TITLE */
 .title {
   text-align: center;
   margin-top: 20px;
@@ -53,7 +51,6 @@ body {
   color: #333;
 }
 
-/* SEARCH */
 .search-container {
   width: 320px;
   margin: 20px auto;
@@ -75,7 +72,6 @@ body {
   outline: none;
 }
 
-/* MENU */
 .menu {
   display: flex;
   justify-content: center;
@@ -84,7 +80,6 @@ body {
   margin-top: 30px;
 }
 
-/* CARD */
 .menu-item {
   width: 300px;
   height: 395px;
@@ -132,7 +127,6 @@ body {
   background: #ff5722;
 }
 
-/* CART DROPDOWN */
 .cart-dropdown {
   display: none;
   position: absolute;
@@ -159,7 +153,6 @@ body {
   font-size: 14px;
 }
 
-/* ===== ARROWS ===== */
 .prev, .next {
   position: absolute;
   top: 50%;
@@ -180,7 +173,6 @@ body {
   background: rgba(0,0,0,0.8);
 }
 
-/* ===== DOTS ===== */
 .dots {
   position: absolute;
   bottom: 15px;
@@ -202,3 +194,29 @@ body {
   background: #ff5722;
 }
 
+.back-home-btn {
+      position: fixed;
+      bottom: 40px;
+      left: 30px;
+      padding: 14px 26px;
+      border: none;
+      border-radius: 30px;
+      background: #e29578;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .back-home-btn:hover {
+      background: #d67a5c;
+      transform: translateY(-2px);
+    }
+
+    .menu-item p {
+      font-weight: bold;
+      color: #333;
+      margin: 5px 0;
+    }

@@ -1,38 +1,45 @@
-<<<<<<< HEAD:public/css/order.css
-/* Background */
-body {
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+}
+
+/* BACKGROUND */
+body {
   background: linear-gradient(135deg, #f7d9d9, #d7c0c0);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
 }
 
-/* Card */
+/* CONTAINER */
 .box {
-  background: #fff;
-  padding: 40px;
+  background: #ffffff;
+  padding: 50px 40px;
   border-radius: 20px;
-  width: 380px;
+  width: 400px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Heading */
+/* HEADING */
 .box h2 {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-weight: 600;
+  font-size: 22px;
   color: #222;
 }
 
-/* Button */
+/* BUTTON */
 .order-btn {
-  background: #ff5722;
+  background: linear-gradient(135deg, #ff5722, #ff7a45);
   color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 14px 32px;
   font-size: 16px;
   border-radius: 12px;
   cursor: pointer;
@@ -40,97 +47,44 @@ body {
 }
 
 .order-btn:hover {
-  background: #e64a19;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* Status */
+/* STATUS */
 #orderStatus {
   margin-top: 20px;
   font-weight: 500;
   color: #444;
 }
 
-/* Back button */
+/* BACK BUTTON */
 .back-btn {
   display: inline-block;
-  margin-top: 25px;
-  padding: 8px 18px;
-  border: 1px solid #ff5722;
-  border-radius: 20px;
+  margin-top: 30px;
+  padding: 10px 20px;
+  border: 2px solid #ff5722;
+  border-radius: 25px;
   color: #ff5722;
   text-decoration: none;
-  transition: 0.3s;
-}
-
-.back-btn:hover {
-  background: #ff5722;
-  color: white;
-=======
-/* Background */
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #f7d9d9, #d7c0c0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-/* Card */
-.box {
-  background: #fff;
-  padding: 40px;
-  border-radius: 20px;
-  width: 380px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-/* Heading */
-.box h2 {
-  margin-bottom: 20px;
-  font-weight: 600;
-  color: #222;
-}
-
-/* Button */
-.order-btn {
-  background: #ff5722;
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  font-size: 16px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.order-btn:hover {
-  background: #e64a19;
-}
-
-/* Status */
-#orderStatus {
-  margin-top: 20px;
   font-weight: 500;
-  color: #444;
-}
-
-/* Back button */
-.back-btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 8px 18px;
-  border: 1px solid #ff5722;
-  border-radius: 20px;
-  color: #ff5722;
-  text-decoration: none;
   transition: 0.3s;
 }
 
 .back-btn:hover {
   background: #ff5722;
   color: white;
->>>>>>> 5fa69b82b0bde5458ad775c0e7572390f45ffdc2:css/order.css
+  transform: translateY(-2px);
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

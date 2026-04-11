@@ -5,41 +5,7 @@
   <title>Cafe Connect – Breakfast Menu</title>
   <link rel="stylesheet" href="css/home.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    .back-home-btn {
-      position: fixed;
-      bottom: 40px;
-      left: 30px;
-      padding: 14px 26px;
-      border: none;
-      border-radius: 30px;
-      background: #e29578;
-      color: white;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-    }
-
-    .back-home-btn:hover {
-      background: #d67a5c;
-      transform: translateY(-2px);
-    }
-
-    .cart-icon {
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    /* Style for the price text */
-    .menu-item p {
-      font-weight: bold;
-      color: #333;
-      margin: 5px 0;
-    }
-  </style>
-
+  <link rel="stylesheet" href="css/breakfast.css">
   <script>
     function goHome() {
       window.location.href = "home.html";
@@ -121,7 +87,7 @@
   </div>
 
   <div class="menu-item">
-    <img src="Assets/vada.avif" alt="Vada">
+    <img src="assets/vada.avif" alt="Vada">
     <h3>Vada</h3>
     <p>₹80</p>
     <button onclick="addToCart('Vada', 80)">Add to Cart</button>
