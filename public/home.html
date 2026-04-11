@@ -5,57 +5,16 @@
   <title>Cafe Connect – Home</title>
   <link rel="stylesheet" href="css/home.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* CSS to ensure Admin and Cart sit side-by-side */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px; /* Spacing between Admin and Cart */
-    }
-
-    .admin-icon {
-      cursor: pointer;
-      text-decoration: none;
-      font-size: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: inherit;
-    }
-
-    .admin-label {
-      font-size: 10px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .cart-icon {
-      cursor: pointer;
-      font-size: 1.2rem;
-    }
-  </style>
 </head>
 <body>
-
 <header class="header">
-
 <div class="logo">
   <img src="assets/logocafeconnect.jpeg">
 </div>
-
 <div class="header-actions">
-
   <div class="orders" onclick="window.location.href='orderdash.html'">
     📦 Orders
   </div>
-
   <div class="cart-icon" onclick="openCart()">
     🛒 <span id="cartCount">0</span>
   </div>
@@ -63,11 +22,8 @@
   <button class="logout-btn" onclick="logout()">Logout</button>
 
 </div>
-
 </header>
-
 <h1 class="title">Welcome To Cafe Connect </h1>
-
 <div class="search-container">
   <span class="search-icon"></span>
   <input type="text" id="searchBar" placeholder="Search food..." onkeyup="searchFood()">

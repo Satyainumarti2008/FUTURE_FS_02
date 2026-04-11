@@ -5,58 +5,15 @@
   <title>Cafe Connect – Snacks Menu</title>
   <link rel="stylesheet" href="css/home.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    /* Back Button Style */
-    .back-home-btn {
-      position: fixed;
-      bottom: 40px;
-      left: 30px;
-      padding: 14px 26px;
-      border: none;
-      border-radius: 30px;
-      background: #cd4210;
-      color: white;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-    }
-
-    .back-home-btn:hover {
-      background: #d67a5c;
-      transform: translateY(-2px);
-    }
-
-    .cart-icon {
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    /* Style for the price text */
-    .menu-item p {
-      font-weight: bold;
-      color: #333;
-      margin: 5px 0;
-    }
-  </style>
-
   <script>
     function goHome() {
       window.location.href = "home.html";
     }
-
-    // Logic to save name and price to localStorage
     function addToCart(itemName, itemPrice) {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      
-      // Store as object with name and price
       cart.push({ name: itemName, price: itemPrice });
-      
       localStorage.setItem("cart", JSON.stringify(cart));
       updateCartCount();
-
       alert(itemName + " (₹" + itemPrice + ") added! Go to cart 🛒");
     }
 
@@ -67,15 +24,12 @@
         cartCountEl.innerText = cart.length;
       }
     }
-
     window.onload = function () {
       updateCartCount();
     };
-
     function openCart() {
       window.location.href = "cart.html";
     }
-
     function searchFood() {
       let input = document.getElementById('searchBar').value.toLowerCase();
       let items = document.getElementsByClassName('menu-item');
@@ -86,9 +40,7 @@
     }
   </script>
 </head>
-
 <body>
-
 <header class="header">
   <div class="logo">
     <img src="assets/logocafeconnect.jpeg" alt="Cafe Logo">

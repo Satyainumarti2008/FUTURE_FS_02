@@ -97,7 +97,7 @@ async function markComplete(id) {
   loadAdminOrders();
 }
 window.onload = loadAdminOrders;
-// auto refresh every 5 seconds
+
 setInterval(loadAdminOrders, 5000);
 async function deleteOrder(id){
   if(!confirm("Delete this order?")) return;

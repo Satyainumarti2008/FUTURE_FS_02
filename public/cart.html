@@ -8,13 +8,9 @@
 </head>
 
 <body>
-
 <h1 class="title">Your Order</h1>
-
 <div class="cart-container">
-
 <div id="cartList"></div>
-
 <div class="total-section">
 Total: ₹<span id="grandTotal">0</span>
 </div>
@@ -23,7 +19,6 @@ Total: ₹<span id="grandTotal">0</span>
 <button class="clear-btn" onclick="clearCart()">Clear</button>
 <button class="order-btn" onclick="placeOrder()">Place Order Now</button>
 </div>
-
 </div>
 
 <div class="back-nav">
@@ -31,26 +26,19 @@ Total: ₹<span id="grandTotal">0</span>
 ← Back to Menu
 </button>
 </div>
-
-
 <script>
-
 function displayCart(){
 
 let cart=JSON.parse(localStorage.getItem("cart"))||[];
 let cartList=document.getElementById("cartList");
 let total=0;
-
 if(cart.length===0){
 
 cartList.innerHTML="<div class='empty-msg'>Your cart is hungry! 🍔</div>";
 document.getElementById("grandTotal").innerText="0";
 return;
-
 }
-
 let grouped={};
-
 cart.forEach(item=>{
 
 if(grouped[item.name]){
@@ -59,101 +47,60 @@ grouped[item.name].qty+=1;
 else{
 grouped[item.name]={...item,qty:1};
 }
-
 });
 
 cartList.innerHTML="";
-
 Object.values(grouped).forEach(item=>{
-
 let cost=item.price*item.qty;
 total+=cost;
-
 cartList.innerHTML+=`
-
 <div class="cart-item">
 
 <div class="item-info">
 
 <span class="item-name">${item.name}</span>
-
 <div class="qty-controls">
 <button class="qty-btn" onclick="updateQty('${item.name}',-1)">−</button>
 <span class="qty-num">${item.qty}</span>
 <button class="qty-btn" onclick="updateQty('${item.name}',1)">+</button>
 </div>
-
 </div>
-
 <span class="item-price">₹${cost}</span>
-
 </div>
-
 `;
-
 });
-
 document.getElementById("grandTotal").innerText=total;
-
 }
-
-
 function updateQty(name,change){
-
 let cart=JSON.parse(localStorage.getItem("cart"))||[];
-
 if(change===1){
-
 let item=cart.find(i=>i.name===name);
 cart.push({...item});
-
 }
 else{
-
 let index=cart.map(i=>i.name).lastIndexOf(name);
 if(index>-1) cart.splice(index,1);
-
 }
-
 localStorage.setItem("cart",JSON.stringify(cart));
-
 displayCart();
-
 }
-
-
 function clearCart(){
-
 if(confirm("Empty your cart?")){
-
 localStorage.removeItem("cart");
 displayCart();
-
 }
-
 }
-
-
-/* ⭐ ORDER FUNCTION (VERY IMPORTANT) */
-
 function placeOrder(){
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 if(cart.length === 0){
   alert("Add items first!");
   return;
 }
 
-/* go to order confirmation page */
 window.location.href = "order.html";
-
 }
 
 window.onload=displayCart;
-
 </script>
-
 </body>
 </html>
-

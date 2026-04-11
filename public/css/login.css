@@ -5,7 +5,6 @@
   font-family: Arial, sans-serif;
 }
 
-/* Full screen video */
 .bg-video {
   position: fixed;
   top: 0;
@@ -16,7 +15,6 @@
   z-index: -2;
 }
 
-/* Dark overlay for readability */
 .overlay {
   position: fixed;
   top: 0;
@@ -27,7 +25,6 @@
   z-index: -1;
 }
 
-/* Center login box */
 body {
   height: 100vh;
   display: flex;
@@ -35,7 +32,6 @@ body {
   align-items: center;
 }
 
-/* Login container */
 .container {
   background: rgba(255, 255, 255, 0.95);
   padding: 30px;

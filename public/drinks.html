@@ -5,49 +5,10 @@
   <title>Cafe Connect – Drinks Menu</title>
   <link rel="stylesheet" href="css/home.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    /* Back Button Style */
-    .back-home-btn {
-      position: fixed;
-      bottom: 40px;
-      left: 30px;
-      padding: 14px 26px;
-      border: none;
-      border-radius: 30px;
-      background: #e29578;
-      color: white;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-    }
-
-    .back-home-btn:hover {
-      background: #d67a5c;
-      transform: translateY(-2px);
-    }
-
-    .cart-icon {
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    /* Style for the price text */
-    .menu-item p {
-      font-weight: bold;
-      color: #333;
-      margin: 5px 0;
-    }
-  </style>
-
   <script>
     function goHome() {
       window.location.href = "home.html";
     }
-
-    // Logic to save items and prices to localStorage
     function addToCart(itemName, itemPrice) {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart.push({ name: itemName, price: itemPrice });
@@ -75,9 +36,7 @@
     }
   </script>
 </head>
-
 <body>
-
 <header class="header">
   <div class="logo">
     <img src="assets/logocafeconnect.jpeg" alt="Cafe Logo">
@@ -87,16 +46,12 @@
     🛒 <span id="cartCount">0</span>
   </div>
 </header>
-
 <h1 class="title">Drinks Menu</h1>
-
 <div class="search-container">
   <span class="search-icon"></span>
   <input type="text" id="searchBar" placeholder="Search drinks..." onkeyup="searchFood()">
 </div>
-
 <div class="menu">
-
   <div class="menu-item">
     <img src="assets/pepsi.jpg" alt="Pepsi">
     <h3>Pepsi</h3>
@@ -105,7 +60,7 @@
   </div>
 
   <div class="menu-item">
-    <img src="Assets/thums-up.jpg" alt="Thums Up">
+    <img src="assets/thums-up.jpg" alt="Thums Up">
     <h3>Thums Up</h3>
     <p>₹40</p>
     <button onclick="addToCart('Thums Up', 40)">Add to Cart</button>

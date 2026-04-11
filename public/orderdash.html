@@ -5,22 +5,15 @@
 <meta charset="UTF-8">
 <title>Order Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="stylesheet" href="css/orderdash.css">
-
 </head>
-
 <body class="order-body">
-
 <header class="header">
   <a href="home.html" class="back-btn">← Back to Menu</a>
   <h1>Order Dashboard</h1>
 </header>
-
 <main>
-
 <table class="order-table">
-
 <thead>
 <tr>
 <th>Order ID</th>
@@ -29,21 +22,13 @@
 <th>Status</th>
 </tr>
 </thead>
-
 <tbody id="userOrderList"></tbody>
-
 </table>
-
 </main>
 <script>
-
 async function loadUserOrders(){
-
 const table = document.getElementById("userOrderList");
-
 try{
-
-/* get logged user email */
 const email = localStorage.getItem("userEmail");
 
 if(!email){
@@ -52,11 +37,9 @@ table.innerHTML =
 return;
 }
 
-/* fetch only this user's orders */
 const res = await fetch("/api/myorders/" + email);
 const orders = await res.json();
 
-/* move completed orders to bottom */
 orders.sort((a,b)=>{
 if(a.status === "Completed" && b.status !== "Completed") return 1;
 if(a.status !== "Completed" && b.status === "Completed") return -1;
@@ -68,13 +51,9 @@ table.innerHTML =
 "<tr><td colspan='4' style='text-align:center;'>No Orders Yet</td></tr>";
 return;
 }
-
 table.innerHTML="";
-
 orders.forEach(order=>{
-
 let grouped = {};
-
 order.items.forEach(i => {
   let qty = i.quantity || 1;
 
@@ -105,21 +84,15 @@ ${order.status || "Pending"}
 </td>
 </tr>
 `;
-
 });
-
 }
 catch(error){
 console.error(error);
 }
-
 }
-
 loadUserOrders();
 
-/* refresh every 5 seconds */
 setInterval(loadUserOrders,5000);
-
 </script>
 </body>
 </html>

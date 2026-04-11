@@ -5,13 +5,11 @@
   <title>Cafe Connect – Breakfast Menu</title>
   <link rel="stylesheet" href="css/home.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/breakfast.css">
   <script>
     function goHome() {
       window.location.href = "home.html";
     }
 
-    // Updated to save Price as well
     function addToCart(itemName, itemPrice) {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart.push({ name: itemName, price: itemPrice });
@@ -19,16 +17,13 @@
       document.getElementById("cartCount").innerText = cart.length;
       alert(itemName + " (₹" + itemPrice + ") added to cart! 🛒");
     }
-
     window.onload = function () {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       document.getElementById("cartCount").innerText = cart.length;
     };
-
     function openCart() {
       window.location.href = "cart.html";
     }
-
     function searchFood() {
       let input = document.getElementById('searchBar').value.toLowerCase();
       let items = document.getElementsByClassName('menu-item');
@@ -39,7 +34,6 @@
     }
   </script>
 </head>
-
 <body>
 
 <header class="header">
