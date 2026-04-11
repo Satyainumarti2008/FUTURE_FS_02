@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         message.style.color = "green";
         message.innerText = data.message;
         setTimeout(() => {
-          window.location.href = "/login";
+          window.location.href = "login.html";
         }, 1500);
       } else {
         message.style.color = "red";
