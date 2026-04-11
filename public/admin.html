@@ -7,12 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="admin-body">
-
   <header class="admin-header">
-    <a href="home.html" class="back-btn">← Back to Menu</a>
-    <h1 class="admin-title">Order Dashboard</h1>
+    <button class="back-home-btn" onclick="goAdmin()">← Back to Dashboard</button>
+    <h1 class="admin-title">Admin Dashboard</h1>
   </header>
-
   <main class="admin-container">
     <table class="order-table">
       <thead>
@@ -28,46 +26,86 @@
         </tbody>
     </table>
   </main>
-
-  <script>
-    function loadAdminOrders() {
-        const orderList = document.getElementById('adminOrderList');
-        
-        // 1. Get the actual cart data that you saved in your home/cart page
-        // We assume your cart is saved under the name 'cart' in localStorage
-        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        if (savedCart.length === 0) {
-            orderList.innerHTML = "<tr><td colspan='5' style='text-align:center;'>No active orders in cart</td></tr>";
-            return;
-        }
-
-        // 2. Format the items into a single string
-        const itemNames = savedCart.map(item => item.name).join(", ");
-        
-        // 3. Calculate total price from the real cart
-        const total = savedCart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
-
-        // 4. Display the REAL data in the table
-        orderList.innerHTML = `
-            <tr>
-                <td>#${Math.floor(Math.random() * 10000)}</td>
-                <td>${itemNames}</td>
-                <td>₹${total}</td>
-                <td><span class="status-badge status-pending">Pending</span></td>
-                <td><button class="btn-complete" onclick="clearOrder()">Mark Complete</button></td>
-            </tr>
-        `;
+<script>
+function goAdmin(){
+  window.location.href = "admin1.html";
+}
+async function loadAdminOrders() {
+  const orderList = document.getElementById("adminOrderList");
+  try {
+    const response = await fetch("/api/orders");
+    const orders = await response.json();
+    orders.sort((a, b) => {
+  if (a.status === "Completed" && b.status !== "Completed") return 1;
+  if (a.status !== "Completed" && b.status === "Completed") return -1;
+  return 0;
+});
+    if (orders.length === 0) {
+      orderList.innerHTML =
+        "<tr><td colspan='5' style='text-align:center;'>No Orders Yet</td></tr>";
+      return;
     }
-
-    function clearOrder() {
-        if(confirm("Mark this order as completed? This will clear the cart.")) {
-            localStorage.removeItem('cart'); // Clears the data
-            location.reload(); // Refreshes the page
-        }
-    }
-
-    window.onload = loadAdminOrders;
+    orderList.innerHTML = "";
+    orders.forEach(order => {
+      let grouped = {};
+order.items.forEach(i => {
+  let qty = i.quantity || 1;
+  if (grouped[i.name]) {
+    grouped[i.name] += qty;
+  } else {
+    grouped[i.name] = qty;
+  }
+});
+let items = Object.entries(grouped)
+  .map(([name, qty]) => `${name} (${qty})`)
+  .join(", ");
+      orderList.innerHTML += `
+        <tr>
+          <td>${order._id}</td>
+          <td>${items}</td>
+          <td>₹${order.total || order.totalPrice}</td>
+          <td>
+           <span class="status-badge ${
+  order.status === "Completed"
+  ? "status-completed"
+  : "status-pending"
+}">
+  ${order.status}
+</span>
+          </td>
+          <td>
+            <button class="btn-complete"
+              onclick="markComplete('${order._id}')">
+              Mark Complete
+            </button>
+            <button class="btn-delete"
+              onclick="deleteOrder('${order._id}')">
+              Delete
+            </button>
+          </td>
+        </tr>
+      `;
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+async function markComplete(id) {
+  await fetch(`/api/orders/${id}`, {
+    method: "PUT"
+  });
+  loadAdminOrders();
+}
+window.onload = loadAdminOrders;
+// auto refresh every 5 seconds
+setInterval(loadAdminOrders, 5000);
+async function deleteOrder(id){
+  if(!confirm("Delete this order?")) return;
+  await fetch(`/api/orders/${id}`,{
+    method:"DELETE"
+  });
+  loadAdminOrders();
+}
 </script>
 </body>
 </html>

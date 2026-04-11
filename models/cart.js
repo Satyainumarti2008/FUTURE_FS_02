@@ -1,20 +1,18 @@
-function updateQty(name, change) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const mongoose = require('mongoose');
 
-  if (change === 1) {
-    // Find item safely
-    let item = cart.find(i => i.name === name);
-    if (item) {
-      cart.push({ name: item.name, price: item.price });
-    }
-  } else {
-    // Remove one item safely
-    let index = cart.findIndex(i => i.name === name);
-    if (index !== -1) {
-      cart.splice(index, 1);
-    }
+const cartSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product"
+  },
+  quantity: {
+    type: Number,
+    default: 1
   }
+},{ timestamps:true });
 
-  localStorage.setItem("cart", JSON.stringify(cart));
-  displayCart();
-}
+module.exports = mongoose.model('Cart', cartSchema);

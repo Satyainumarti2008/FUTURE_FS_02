@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forgot Password</title>
+
+  <!-- ✅ CSS LINK (IMPORTANT) -->
+  <link rel="stylesheet" href="/css/forgot.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Forgot Password</h2>
+
+    <!-- Email -->
+    <input type="email" id="email" placeholder="Enter Email" required>
+    <button onclick="sendOtp()">Send OTP</button>
+
+    <!-- OTP -->
+    <input type="text" id="otp" placeholder="Enter OTP">
+
+    <!-- New Password -->
+    <input type="password" id="newPassword" placeholder="New Password">
+
+    <button onclick="resetPassword()">Reset Password</button>
+
+    <!-- Message -->
+    <p id="msg"></p>
+
+    <!-- Back to login -->
+    <p><a href="/login">Back to Login</a></p>
+  </div>
+
+  <!-- ✅ JS LINK -->
+  <script src="js/forgot.js"></script>
+
+</body>
+</html>

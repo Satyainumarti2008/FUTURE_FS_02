@@ -235,3 +235,65 @@ body {
   background: #ff5722;
 }
 
+/* ================= HEADER ================= */
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 40px;
+  background:#e9d5c7;
+}
+
+/* right side actions */
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:35px; /* more space between Orders, Cart, Logout */
+}
+
+/* orders */
+.orders{
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* cart */
+.cart-icon{
+  position:relative;
+  font-size:22px;
+  cursor:pointer;
+}
+
+#cartCount{
+  background:#ff3b3b;
+  color:white;
+  font-size:12px;
+  padding:2px 6px;
+  border-radius:50%;
+  position:absolute;
+  top:-8px;
+  right:-12px;
+}
+
+/* logout button */
+.logout-btn{
+  background:#f72424;
+  color:white;
+  border:none;
+  padding:8px 16px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.logout-btn:hover{
+  background:#f71629;
+  transform:translateY(-1px);
+}

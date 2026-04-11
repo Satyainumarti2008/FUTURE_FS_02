@@ -1,30 +1,44 @@
-document.getElementById("loginForm").addEventListener("submit", async function (e) {
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const email = document.getElementById("email").value.trim().toLowerCase();
   const password = document.getElementById("password").value;
   const error = document.getElementById("error");
 
-  error.textContent = "";
+  error.innerText = "";
 
   try {
-    const res = await fetch("http://localhost:5000/login", {
+    const response = await fetch("/api/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ email, password })
     });
 
-    const data = await res.text();
+    const data = await response.json();
 
-    if (data === "Login success") {
-      window.location.href = "home.html";
+    console.log("Login response:", data);
+
+    if (data.success) {
+
+      // ✅ Admin check
+      if (data.role === "admin") {
+        alert("Admin Login Successful");
+        window.location.href = "/admin1";
+      } 
+      else {
+        alert("User Login Successful");
+        localStorage.setItem("userEmail", email.toLowerCase());
+        window.location.href = "/home";
+      }
+
     } else {
-      error.textContent = "Invalid email or password";
-      error.style.color = "red";
+      error.innerText = data.message;
     }
 
   } catch (err) {
-    error.textContent = "Server not running";
-    error.style.color = "red";
+    console.error(err);
+    error.innerText = "Server error";
   }
 });
