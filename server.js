@@ -29,7 +29,7 @@ app.get('/signup', (req, res) => {
   res.sendFile('./public/signup.html', { root: __dirname });
 });
 
-app.get('/login', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile('./public/login.html', { root: __dirname });
 });
 
